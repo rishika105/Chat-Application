@@ -1,45 +1,59 @@
 import { useEffect, useState } from "react";
-import Auth from "./pages/Auth";
-
-import "./App.css";
 import { supabase } from "../lib/supabase";
-import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-function App() {
+import Auth from "./pages/Auth";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile"; 
+
+export default function App() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 1. Check active session
+    //check active session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
     });
 
-    // 2. Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setLoading(false);
-    });
+
+   //subscribe to auth change
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      }
+    );
 
     return () => subscription.unsubscribe();
   }, []);
 
   if (loading) {
     return (
-      <div className="loader-container">
-        <div className="loader"></div>
-        <p>Loading your chat experience...</p>
+      <div className="w-full h-screen flex flex-col items-center justify-center text-white">
+        Loading...
       </div>
     );
   }
 
-  if (!session) {
-    return <Auth />;
-  }
+  return (
+    <BrowserRouter>3
+      <Routes>
+        {/* Public Route */}
+        {!session && <Route path="/auth" element={<Auth />} />}
 
-  // User is logged in
-  return <Home setSession={setSession} />;
+        {/* Protected Routes */}
+        {session && <Route path="/" element={<Home />} />}
+        {session && <Route path="/profile" element={<Profile />} />}
+
+        {/* Redirect handling */}
+        <Route
+          path="*"
+          element={
+            session ? <Navigate to="/" replace /> : <Navigate to="/auth" replace />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App;

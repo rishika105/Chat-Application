@@ -1,25 +1,24 @@
-import { useState, useEffect } from 'react';
-import { supabase } from '../../lib/supabase';
-import { 
-  FaGoogle, 
-  FaTwitter, 
-  FaFacebook, 
-  FaEnvelope, 
-
+import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabase";
+import {
+  FaGoogle,
+  FaTwitter,
+  FaFacebook,
+  FaEnvelope,
   FaLock,
   FaRocket,
-  FaComments
-} from 'react-icons/fa';
+  FaComments,
+} from "react-icons/fa";
 
 export default function Auth() {
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
 
   const handleEmailAuth = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
@@ -47,7 +46,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen  bg-gradient-to-br from-gray-900 to-background text-gray-100 flex">
+    <div className="min-h-screen mx-auto n w-[90%] bg-gradient-to-br from-gray-900 to-background text-gray-100 flex">
       {/* Left Side - Auth Form */}
       <div className="w-full lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
         {/* Animated background elements */}
@@ -56,14 +55,14 @@ export default function Auth() {
           <div className="absolute top-60 -right-20 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl animate-pulse-glow delay-1000"></div>
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 ">
           {/* Logo/Brand */}
           <div className="flex items-center gap-3 mb-10">
             <div className="p-3 bg-gradient-to-br from-primary-500 to-purple-500 rounded-2xl shadow-lg">
               <FaComments className="text-2xl" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-primary-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-gradient-to-r text-purple-500 bg-clip-text">
                 ChatterBox
               </h1>
               <p className="text-gray-400 text-sm">Minimal. Real. Connected.</p>
@@ -73,17 +72,19 @@ export default function Auth() {
           {/* Welcome */}
           <div className="mb-10">
             <h2 className="text-4xl font-bold mb-3">
-              Welcome to the <span className="text-primary-400">future</span> of chat
+              Welcome to the <span className="text-primary-400">future</span> of
+              chat
             </h2>
             <p className="text-gray-400">
-              Experience real-time conversations with friends. No fluff, just meaningful connections.
+              Experience real-time conversations with friends. No fluff, just
+              meaningful connections.
             </p>
           </div>
 
           {/* Social Login Buttons */}
           <div className="space-y-4 mb-8">
             <button
-              onClick={() => handleOAuthLogin('google')}
+              onClick={() => handleOAuthLogin("google")}
               disabled={loading}
               className="w-full p-4 bg-surface border border-gray-700 rounded-xl flex items-center justify-center gap-3 hover:bg-gray-800/50 transition-all duration-300 hover:scale-[1.02] hover:border-primary-500/30 disabled:opacity-50 disabled:cursor-not-allowed group"
             >
@@ -92,7 +93,7 @@ export default function Auth() {
             </button>
 
             <button
-              onClick={() => handleOAuthLogin('twitter')}
+              onClick={() => handleOAuthLogin("twitter")}
               disabled={loading}
               className="w-full p-4 bg-surface border border-gray-700 rounded-xl flex items-center justify-center gap-3 hover:bg-gray-800/50 transition-all duration-300 hover:scale-[1.02] hover:border-gray-500 disabled:opacity-50 disabled:cursor-not-allowed group"
             >
@@ -101,7 +102,7 @@ export default function Auth() {
             </button>
 
             <button
-              onClick={() => handleOAuthLogin('facebook')}
+              onClick={() => handleOAuthLogin("facebook")}
               disabled={loading}
               className="w-full p-4 bg-surface border border-gray-700 rounded-xl flex items-center justify-center gap-3 hover:bg-gray-800/50 transition-all duration-300 hover:scale-[1.02] hover:border-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed group"
             >
@@ -116,7 +117,9 @@ export default function Auth() {
               <div className="w-full border-t border-gray-700"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-gray-900 text-gray-400">Or continue with email</span>
+              <span className="px-4 bg-gray-900 text-gray-400">
+                Or continue with email
+              </span>
             </div>
           </div>
 
@@ -165,7 +168,8 @@ export default function Auth() {
               <FaLock className="text-primary-400 mt-1" />
               <div>
                 <p className="text-sm text-gray-300">
-                  <span className="font-semibold">100% secure.</span> We use military-grade encryption and never store your password.
+                  <span className="font-semibold">100% secure.</span> We use
+                  military-grade encryption and never store your password.
                 </p>
               </div>
             </div>
@@ -180,7 +184,13 @@ export default function Auth() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className={`absolute w-${24 + i * 4} h-${24 + i * 4} rounded-full bg-gradient-to-br from-primary-${500 - i * 100}/10 to-purple-${500 - i * 100}/10 backdrop-blur-sm animate-float`}
+              className={`absolute w-${24 + i * 4} h-${
+                24 + i * 4
+              } rounded-full bg-gradient-to-br from-primary-${
+                500 - i * 100
+              }/10 to-purple-${
+                500 - i * 100
+              }/10 backdrop-blur-sm animate-float`}
               style={{
                 left: `${20 + i * 15}%`,
                 top: `${10 + i * 10}%`,
@@ -193,30 +203,6 @@ export default function Auth() {
         {/* Main content */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-12">
           <div className="max-w-xl text-center">
-            {/* Feature cards */}
-            <div className="grid grid-cols-2 gap-6 mb-12">
-              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
-                <div className="text-3xl mb-4">🚀</div>
-                <h3 className="font-bold mb-2">Lightning Fast</h3>
-                <p className="text-gray-300 text-sm">Real-time messaging with zero latency</p>
-              </div>
-              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
-                <div className="text-3xl mb-4">🔒</div>
-                <h3 className="font-bold mb-2">End-to-End Secure</h3>
-                <p className="text-gray-300 text-sm">Your conversations are private</p>
-              </div>
-              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
-                <div className="text-3xl mb-4">🎨</div>
-                <h3 className="font-bold mb-2">Minimal Design</h3>
-                <p className="text-gray-300 text-sm">Focus on what matters most</p>
-              </div>
-              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
-                <div className="text-3xl mb-4">💬</div>
-                <h3 className="font-bold mb-2">Smart Features</h3>
-                <p className="text-gray-300 text-sm">Voice, video, and file sharing</p>
-              </div>
-            </div>
-
             {/* Chat preview */}
             <div className="bg-surface/50 backdrop-blur-sm rounded-3xl border border-white/10 p-6 shadow-2xl">
               <div className="flex items-center gap-3 mb-6">
@@ -224,10 +210,12 @@ export default function Auth() {
                 <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse delay-150"></div>
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse delay-300"></div>
                 <div className="flex-1 text-center">
-                  <span className="text-gray-300 font-medium">Live Preview</span>
+                  <span className="text-gray-300 font-medium">
+                    Live Preview
+                  </span>
                 </div>
               </div>
-              
+
               <div className="space-y-4">
                 <div className="flex justify-start">
                   <div className="max-w-[70%] bg-gray-800/50 rounded-2xl rounded-tl-none p-4">
@@ -237,13 +225,17 @@ export default function Auth() {
                 </div>
                 <div className="flex justify-end">
                   <div className="max-w-[70%] bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl rounded-tr-none p-4">
-                    <p className="text-white">Absolutely! Just sent you the files 📁</p>
+                    <p className="text-white">
+                      Absolutely! Just sent you the files 📁
+                    </p>
                     <span className="text-xs text-primary-200">2:31 PM</span>
                   </div>
                 </div>
                 <div className="flex justify-start">
                   <div className="max-w-[70%] bg-gray-800/50 rounded-2xl rounded-tl-none p-4">
-                    <p className="text-gray-200">Perfect! Starting video call now 🎥</p>
+                    <p className="text-gray-200">
+                      Perfect! Starting call now 🎥
+                    </p>
                     <span className="text-xs text-gray-400">2:32 PM</span>
                   </div>
                 </div>
@@ -251,7 +243,7 @@ export default function Auth() {
             </div>
 
             {/* Stats */}
-            <div className="mt-12 flex justify-center gap-8">
+            <div className="mt-12 flex justify-center gap-8 m-10">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary-400">10K+</div>
                 <div className="text-gray-400 text-sm">Active Users</div>
@@ -263,6 +255,39 @@ export default function Auth() {
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary-400">∞</div>
                 <div className="text-gray-400 text-sm">Free Forever</div>
+              </div>
+            </div>
+
+
+            {/* Feature cards */}
+            <div className="grid grid-cols-2 gap-6 mb-12">
+              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
+                <div className="text-3xl mb-4">🚀</div>
+                <h3 className="font-bold mb-2">Lightning Fast</h3>
+                <p className="text-gray-300 text-sm">
+                  Real-time messaging with zero latency
+                </p>
+              </div>
+              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
+                <div className="text-3xl mb-4">🔒</div>
+                <h3 className="font-bold mb-2">End-to-End Secure</h3>
+                <p className="text-gray-300 text-sm">
+                  Your conversations are private
+                </p>
+              </div>
+              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
+                <div className="text-3xl mb-4">🎨</div>
+                <h3 className="font-bold mb-2">Minimal Design</h3>
+                <p className="text-gray-300 text-sm">
+                  Focus on what matters most
+                </p>
+              </div>
+              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
+                <div className="text-3xl mb-4">💬</div>
+                <h3 className="font-bold mb-2">Smart Features</h3>
+                <p className="text-gray-300 text-sm">
+                  Voice, video, and file sharing
+                </p>
               </div>
             </div>
           </div>
