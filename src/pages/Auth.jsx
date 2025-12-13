@@ -46,9 +46,9 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen mx-auto n w-[90%] bg-gradient-to-br from-gray-900 to-background text-gray-100 flex">
+    <div className="h-screen bg-gradient-to-br from-gray-900 to-background text-gray-100 flex justify-center">
       {/* Left Side - Auth Form */}
-      <div className="w-full lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
+      <div className="w-full lg:w-3/5 p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
@@ -65,7 +65,6 @@ export default function Auth() {
               <h1 className="text-3xl font-bold bg-gradient-to-r text-purple-500 bg-clip-text">
                 ChatterBox
               </h1>
-              <p className="text-gray-400 text-sm">Minimal. Real. Connected.</p>
             </div>
           </div>
 
@@ -161,48 +160,14 @@ export default function Auth() {
               )}
             </button>
           </form>
-
-          {/* Security Note */}
-          <div className="mt-8 p-4 bg-gray-800/30 rounded-xl border border-gray-700/50">
-            <div className="flex items-start gap-3">
-              <FaLock className="text-primary-400 mt-1" />
-              <div>
-                <p className="text-sm text-gray-300">
-                  <span className="font-semibold">100% secure.</span> We use
-                  military-grade encryption and never store your password.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
       {/* Right Side - Visual Design */}
-      <div className="hidden lg:flex lg:w-3/5 bg-gradient-to-br from-primary-900/20 to-purple-900/20 border-l border-gray-800 relative overflow-hidden">
-        {/* Animated chat bubbles */}
-        <div className="absolute inset-0">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className={`absolute w-${24 + i * 4} h-${
-                24 + i * 4
-              } rounded-full bg-gradient-to-br from-primary-${
-                500 - i * 100
-              }/10 to-purple-${
-                500 - i * 100
-              }/10 backdrop-blur-sm animate-float`}
-              style={{
-                left: `${20 + i * 15}%`,
-                top: `${10 + i * 10}%`,
-                animationDelay: `${i * 0.5}s`,
-              }}
-            ></div>
-          ))}
-        </div>
-
+      <div className="hidden lg:flex lg:w-3/5 bg-gradient-to-br from-primary-900/20 to-purple-900/20 border-l border-gray-800 relative">
         {/* Main content */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-12">
-          <div className="max-w-xl text-center">
+          <div className="max-w-xl text-center flex flex-col gap-7">
             {/* Chat preview */}
             <div className="bg-surface/50 backdrop-blur-sm rounded-3xl border border-white/10 p-6 shadow-2xl">
               <div className="flex items-center gap-3 mb-6">
@@ -242,51 +207,21 @@ export default function Auth() {
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="mt-12 flex justify-center gap-8 m-10">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary-400">10K+</div>
-                <div className="text-gray-400 text-sm">Active Users</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary-400">99.9%</div>
-                <div className="text-gray-400 text-sm">Uptime</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-primary-400">∞</div>
-                <div className="text-gray-400 text-sm">Free Forever</div>
-              </div>
-            </div>
-
-
             {/* Feature cards */}
             <div className="grid grid-cols-2 gap-6 mb-12">
               <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
                 <div className="text-3xl mb-4">🚀</div>
                 <h3 className="font-bold mb-2">Lightning Fast</h3>
                 <p className="text-gray-300 text-sm">
-                  Real-time messaging with zero latency
+                  Real-time messaging with low latency
                 </p>
               </div>
               <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
                 <div className="text-3xl mb-4">🔒</div>
                 <h3 className="font-bold mb-2">End-to-End Secure</h3>
                 <p className="text-gray-300 text-sm">
-                  Your conversations are private
-                </p>
-              </div>
-              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
-                <div className="text-3xl mb-4">🎨</div>
-                <h3 className="font-bold mb-2">Minimal Design</h3>
-                <p className="text-gray-300 text-sm">
-                  Focus on what matters most
-                </p>
-              </div>
-              <div className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-primary-500/30 transition-all duration-300">
-                <div className="text-3xl mb-4">💬</div>
-                <h3 className="font-bold mb-2">Smart Features</h3>
-                <p className="text-gray-300 text-sm">
-                  Voice, video, and file sharing
+                  Your conversations are private. Uses military grade
+                  encryption.
                 </p>
               </div>
             </div>

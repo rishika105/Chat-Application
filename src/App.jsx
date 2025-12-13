@@ -37,7 +37,7 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter>3
+    <BrowserRouter>
       <Routes>
         {/* Public Route */}
         {!session && <Route path="/auth" element={<Auth />} />}
