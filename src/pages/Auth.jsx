@@ -116,7 +116,7 @@ export default function Auth() {
               <div className="w-full border-t border-gray-700"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-gray-900 text-gray-400">
+              <span className="px-4 bg-gray-900 text-gray-400 rounded-md">
                 Or continue with email
               </span>
             </div>
